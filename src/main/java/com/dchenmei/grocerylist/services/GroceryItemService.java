@@ -17,7 +17,7 @@ public class GroceryItemService {
     }
 
     public List<GroceryItem> saveAll(List<GroceryItem> groceryItems) {
-        return stockRepository.saveAll();
+        return stockRepository.saveAll(groceryItems);
     }
 
     // We can have a delete and update but the same effect can be achieved with just find and save
