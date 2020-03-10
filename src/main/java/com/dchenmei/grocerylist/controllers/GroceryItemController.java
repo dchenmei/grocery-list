@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class GroceryItemController {
     @GetMapping("/")
     public String list() {
-        return "groceries";
+        return "grocery";
     }
 }

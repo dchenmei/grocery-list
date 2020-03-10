@@ -20,7 +20,7 @@
                v-model="newTodo"
                @keyup.enter="addTodo">
     </header>
-    <section class="main" v-show="grocerys.length" v-cloak>
+    <section class="main" v-show="groceries.length" v-cloak>
         <input class="toggle-all" type="checkbox" v-model="allDone">
         <ul class="grocery-list">
             <li v-for="grocery in filteredTodos"
@@ -41,7 +41,7 @@
             </li>
         </ul>
     </section>
-    <footer class="footer" v-show="grocerys.length" v-cloak>
+    <footer class="footer" v-show="groceries.length" v-cloak>
     <span class="grocery-count">
       <strong>{{ remaining }}</strong> {{ remaining | pluralize }} left
     </span>
@@ -50,7 +50,7 @@
             <li><a href="#/active" :class="{ selected: visibility == 'active' }">Active</a></li>
             <li><a href="#/completed" :class="{ selected: visibility == 'completed' }">Completed</a></li>
         </ul>
-        <button class="clear-completed" @click="removeCompleted" v-show="grocerys.length > remaining">
+        <button class="clear-completed" @click="removeCompleted" v-show="groceries.length > remaining">
             Clear completed
         </button>
     </footer>

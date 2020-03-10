@@ -2,15 +2,15 @@
 // and hash-based routing in ~120 effective lines of JavaScript.
 
 // localStorage persistence
-var STORAGE_KEY = 'todos-vuejs-2.0'
-var todoStorage = {
+var STORAGE_KEY = 'groceries-vuejs-2.0'
+var groceryStorage = {
     fetch: function () {
         return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
     },
-    sync: function (todos) {
+    sync: function (groceries) {
         axios
             .post('/api/v1/groceries', groceries)
-            .then(response => (groceriesStorage.save(response.data)))
+            .then(response => (groceryStorage.save(response.data)))
     .catch(error => console.log(error))
     },
     save: function(groceries){
@@ -52,7 +52,7 @@ var app = new Vue({
     watch: {
         groceries: {
             handler: function (groceries) {
-                groceriesStorage.sync(groceries)
+                groceryStorage.sync(groceries)
             },
             deep: true
         }
@@ -87,7 +87,7 @@ var app = new Vue({
 
     mounted() {
         axios.get('/api/v1/groceries')
-            .then(response => (groceriesStorage.save(response.data)))
+            .then(response => (groceryStorage.save(response.data)))
     .catch(error => console.log(error))
     },
 
@@ -140,7 +140,7 @@ var app = new Vue({
     // before focusing on the input field.
     // http://vuejs.org/guide/custom-directive.html
     directives: {
-        'todo-focus': function (el, binding) {
+        'grocery-focus': function (el, binding) {
             if (binding.value) {
                 el.focus()
             }
