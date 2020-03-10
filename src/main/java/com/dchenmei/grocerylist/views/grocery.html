@@ -6,43 +6,43 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Grocery List</title>
-    <link href="https://unpkg.com/todomvc-app-css@2.0.6/index.css" rel="stylesheet"/>
+    <link href="/index.css" rel="stylesheet"/>
     <link href="/grocery.css" rel="stylesheet"/>
 </head>
 <body>
 
-<section class="todoapp">
+<section class="groceryapp">
     <header class="header">
         <h1>Groceries</h1>
-        <input class="new-todo"
+        <input class="new-grocery"
                autofocus autocomplete="off"
                placeholder="What needs to be done?"
                v-model="newTodo"
                @keyup.enter="addTodo">
     </header>
-    <section class="main" v-show="todos.length" v-cloak>
+    <section class="main" v-show="grocerys.length" v-cloak>
         <input class="toggle-all" type="checkbox" v-model="allDone">
-        <ul class="todo-list">
-            <li v-for="todo in filteredTodos"
-                class="todo"
-                :key="todo.id"
-                :class="{ completed: todo.completed, editing: todo == editedTodo }">
+        <ul class="grocery-list">
+            <li v-for="grocery in filteredTodos"
+                class="grocery"
+                :key="grocery.id"
+                :class="{ completed: grocery.completed, editing: grocery == editedTodo }">
                 <div class="view">
-                    <input class="toggle" type="checkbox" v-model="todo.completed">
-                    <label @dblclick="editTodo(todo)">{{ todo.title }}</label>
-                    <button class="destroy" @click="removeTodo(todo)"></button>
+                    <input class="toggle" type="checkbox" v-model="grocery.completed">
+                    <label @dblclick="editTodo(grocery)">{{ grocery.title }}</label>
+                    <button class="destroy" @click="removeTodo(grocery)"></button>
                 </div>
                 <input class="edit" type="text"
-                       v-model="todo.title"
-                       v-todo-focus="todo == editedTodo"
-                       @blur="doneEdit(todo)"
-                       @keyup.enter="doneEdit(todo)"
-                       @keyup.esc="cancelEdit(todo)">
+                       v-model="grocery.title"
+                       v-grocery-focus="grocery == editedTodo"
+                       @blur="doneEdit(grocery)"
+                       @keyup.enter="doneEdit(grocery)"
+                       @keyup.esc="cancelEdit(grocery)">
             </li>
         </ul>
     </section>
-    <footer class="footer" v-show="todos.length" v-cloak>
-    <span class="todo-count">
+    <footer class="footer" v-show="grocerys.length" v-cloak>
+    <span class="grocery-count">
       <strong>{{ remaining }}</strong> {{ remaining | pluralize }} left
     </span>
         <ul class="filters">
@@ -50,13 +50,13 @@
             <li><a href="#/active" :class="{ selected: visibility == 'active' }">Active</a></li>
             <li><a href="#/completed" :class="{ selected: visibility == 'completed' }">Completed</a></li>
         </ul>
-        <button class="clear-completed" @click="removeCompleted" v-show="todos.length > remaining">
+        <button class="clear-completed" @click="removeCompleted" v-show="grocerys.length > remaining">
             Clear completed
         </button>
     </footer>
 </section>
 <footer class="info">
-    <p>Double-click to edit a todo</p>
+    <p>Double-click to edit a grocery</p>
 </footer>
 
 <script src="https://unpkg.com/vue@2.5.8/dist/vue.js"></script>
